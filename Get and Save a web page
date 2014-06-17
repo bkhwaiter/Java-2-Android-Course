@@ -1,0 +1,36 @@
+import java.net.*;
+import java.io.*;
+
+
+	public class URLConnectionReader {
+	    public static void main(String[] args) throws Exception {
+	        URL oracle = new URL("http://www.uww.edu/");
+	        URLConnection yc = oracle.openConnection();
+	        BufferedReader in = new BufferedReader(new InputStreamReader(
+	                                    yc.getInputStream()));
+	        String inputLine;
+	      
+			String fileName = "uww.edu.html";
+			File file = new File(fileName);
+ 
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			//use FileWriter to write file
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+ 
+			while ((inputLine = in.readLine()) != null) {
+				bw.write(inputLine);
+			}
+ 
+			bw.close();
+			in.close();
+ 
+			System.out.println("The html file is saved :)");
+	        
+	        
+	   
+	    }
+	}
+	
